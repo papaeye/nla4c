@@ -129,7 +129,11 @@ function runClient(addr, port, threadId, watchIds) {
   socket.create('tcp', {}, onCreate);
 }
 
-function main() {
+(function() {
+  if (!localStorage.watchIds) {
+    localStorage.watchIds = JSON.stringify([]);
+  }
+
   var watchIds = JSON.parse(localStorage.watchIds).filter(function(e) {
     return e.lastIndexOf('co', 0) == 0;
   });
@@ -138,10 +142,4 @@ function main() {
   requestAlertInfo(function(addr, port, threadId) {
     runClient(addr, port, threadId, watchIds);
   });
-}
-
-if (!localStorage.watchIds) {
-  localStorage.watchIds = JSON.stringify([]);
-}
-
-main();
+}());
