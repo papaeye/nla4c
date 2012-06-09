@@ -1,3 +1,5 @@
+const audio = new Audio("se_click_1.mp3");
+
 function notify(title, body, icon, broadcast_id) {
   var notification = webkitNotifications.createNotification(icon, title, body);
 
@@ -11,6 +13,7 @@ function notify(title, body, icon, broadcast_id) {
     this.cancel();
   };
   notification.show();
+  audio.play();
 }
 
 function requestAlertInfo(callback) {
