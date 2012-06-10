@@ -68,7 +68,7 @@ function string2ArrayBuffer(string, callback) {
 
 function arrayBuffer2String(buf, callback) {
   var bb = new WebKitBlobBuilder();
-  bb.append(buf);
+  bb.append(new Uint8Array(buf));
   var f = new FileReader();
   f.onload = function(e) {
     callback(e.target.result);
