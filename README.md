@@ -18,3 +18,4 @@ TODO
 ----
 
 * Fix memory leak...
+* Error handling
