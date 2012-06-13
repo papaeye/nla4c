@@ -131,7 +131,7 @@ function runClient(addr, port, threadId, watchIds) {
   }
 
   var watchIds = JSON.parse(localStorage.watchIds).filter(function(e) {
-    return e.lastIndexOf('co', 0) == 0;
+    return e.lastIndexOf('co', 0) === 0;
   });
   console.log(watchIds);
 
