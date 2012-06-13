@@ -56,24 +56,20 @@ function requestBroadcastInfo(broadcast_id, callback) {
 }
 
 // http://goo.gl/UDanx
-function string2ArrayBuffer(string, callback) {
-  var bb = new WebKitBlobBuilder();
-  bb.append(string);
+function string2ArrayBuffer(str, callback) {
   var f = new FileReader();
   f.onload = function(e) {
     callback(e.target.result);
   };
-  f.readAsArrayBuffer(bb.getBlob());
+  f.readAsArrayBuffer(new Blob([str]));
 }
 
 function arrayBuffer2String(buf, callback) {
-  var bb = new WebKitBlobBuilder();
-  bb.append(new Uint8Array(buf));
   var f = new FileReader();
   f.onload = function(e) {
     callback(e.target.result);
   };
-  f.readAsText(bb.getBlob());
+  f.readAsText(new Blob([new Uint8Array(buf)]));
 }
 
 const socket = chrome.experimental.socket;
