@@ -4,9 +4,8 @@ function notify(title, body, icon, broadcast_id) {
   var notification = webkitNotifications.createNotification(icon, title, body);
 
   notification.ondisplay = function() {
-    // Dismiss the notification window after 3 seconds.
     setTimeout(function() { notification.cancel(); },
-               3 * 1000);
+               5 * 1000);
   };
   notification.onclick = function() {
     window.open("http://live.nicovideo.jp/watch/lv" + broadcast_id);
