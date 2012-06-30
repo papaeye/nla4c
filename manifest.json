@@ -3,7 +3,7 @@
   "version": "0.1",
   "manifest_version": 2,
 
-  "description": "A extension with Niconico Live Alert API and chrome.experimental.socket.",
+  "description": "A sample extension using Niconico Live Alert API and chrome.experimental.socket.",
   "icons": {"16": "16.png", "48": "48.png", "128": "128.png"},
 
   "background": {
