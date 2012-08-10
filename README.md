@@ -9,7 +9,7 @@ A Chrome extension using Niconico Live Alert API and chrome.experimental.socket.
 Prerequisites
 -------------
 
-* Google Chrome 21.0.1168.0 or later
+* Google Chrome 21
 
 Install
 -------
@@ -21,3 +21,8 @@ Install
 3. Go `chrome://chrome/extensions/`
     1. Check [Developer mode]
     2. Click [Load unpacked extension...] and select the cloned repository
+
+TODO
+----
+
+* Support Google Chrome 22 or later (i.e., ``chrome.socket``)
