@@ -1,14 +1,16 @@
 /*jslint indent: 2, browser: true */
-/*global options */
+/*global chrome, options */
 
 window.addEventListener("DOMContentLoaded", function () {
   "use strict";
 
-  options.watchIds.value = JSON.parse(localStorage.watchIds || '[]').join("\n");
+  chrome.storage.sync.get("watchIds", function (value) {
+    options.watchIds.value = value.watchIds.join("\n");
+  });
 
   options.saveOptions.addEventListener("click", function () {
     var watchIds = options.watchIds.value.replace(/\r\n?/, "\n").split("\n");
-    localStorage.watchIds = JSON.stringify(watchIds);
+    chrome.storage.sync.set({ watchIds: watchIds });
   }, false);
 
 }, false);

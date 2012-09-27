@@ -3,16 +3,19 @@
   "version": "0.1",
   "manifest_version": 2,
 
-  "description": "A sample extension using Niconico Live Alert API and chrome.experimental.socket.",
-  "icons": {"16": "16.png", "48": "48.png", "128": "128.png"},
+  "description": "A Chrome App using Niconico Live Alert API and chrome.socket.",
+  "icons": { "16": "16.png", "48": "48.png", "128": "128.png" },
 
-  "background": {
-    "scripts": ["background.js"]
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
   },
   "options_page": "options.html",
   "permissions": [
     "notifications",
-    "experimental",
+    "storage",
+    { "socket": ["tcp-connect"] },
     "http://live.nicovideo.jp/"
   ]
 }

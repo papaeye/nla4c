@@ -74,7 +74,7 @@ function arrayBuffer2String(buf, callback) {
   f.readAsText(new Blob([new Uint8Array(buf)]));
 }
 
-var socket = chrome.experimental.socket;
+var socket = chrome.socket;
 var expectedMessagePattern = /<chat [^>]+>(\d+,(co\d+|ch\d+|official),\d+)<\/chat>/;
 
 function runClient(addr, port, threadId, watchIds) {
@@ -128,17 +128,19 @@ function runClient(addr, port, threadId, watchIds) {
   socket.create('tcp', {}, onCreate);
 }
 
-(function () {
-  if (!localStorage.watchIds) {
-    localStorage.watchIds = JSON.stringify([]);
-  }
+chrome.runtime.onInstalled.addListener(function () {
+  chrome.storage.sync.set({ watchIds: [] });
+});
 
-  var watchIds = JSON.parse(localStorage.watchIds).filter(function (e) {
-    return e.lastIndexOf('co', 0) === 0;
-  });
-  console.log(watchIds);
+chrome.app.runtime.onLaunched.addListener(function () {
+  chrome.storage.sync.get("watchIds", function (value) {
+    var watchIds = value.watchIds.filter(function (e) {
+      return e.lastIndexOf('co', 0) === 0;
+    });
+    console.log(watchIds);
 
-  requestAlertInfo(function (addr, port, threadId) {
-    runClient(addr, port, threadId, watchIds);
+    requestAlertInfo(function (addr, port, threadId) {
+      runClient(addr, port, threadId, watchIds);
+    });
   });
-}());
+});
